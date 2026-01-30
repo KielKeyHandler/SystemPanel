@@ -1,61 +1,34 @@
-* { box-sizing:border-box; }
-
-body {
-  margin:0;
-  height:100svh;
-  background:radial-gradient(circle at top,#0c1b2a,#050505);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:white;
-  font-family:system-ui;
-  overflow:hidden;
-}
-
+/* PARTICLE CONTAINER */
 #particle-container {
-  position:fixed;
-  inset:0;
-  pointer-events:none;
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(8px) contrast(20);
 }
 
+/* PARTICLES */
 .particle {
-  position:absolute;
-  width:var(--dim);
-  height:var(--dim);
-  left:var(--pos-x);
-  bottom:-15rem;
-  background:rgba(0,200,255,.35);
-  border-radius:50%;
-  filter:blur(2px);
-  animation:float var(--dur) linear infinite;
-  animation-delay:var(--delay);
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  left: var(--x);
+  top: 110%;
+  background: radial-gradient(
+    circle,
+    rgba(0, 200, 255, 0.9),
+    rgba(0, 200, 255, 0.35),
+    transparent 70%
+  );
+  border-radius: 50%;
+  animation: gooFloat var(--dur) linear infinite;
+  animation-delay: var(--delay);
 }
 
-@keyframes float {
+/* FLOAT ANIMATION */
+@keyframes gooFloat {
   to {
-    transform:translateY(calc(-1 * var(--uplift)));
-    opacity:0;
+    transform: translateY(calc(-1 * var(--rise)));
+    opacity: 0;
   }
-}
-
-.card {
-  z-index:1;
-  width:min(90vw,360px);
-  padding:22px;
-  border-radius:14px;
-  background:rgba(10,10,10,.85);
-  backdrop-filter:blur(12px);
-  text-align:center;
-  box-shadow:0 0 30px rgba(0,200,255,.3);
-}
-
-.btn {
-  display:block;
-  margin-top:14px;
-  padding:12px;
-  background:#00c8ff;
-  color:black;
-  border-radius:8px;
-  text-decoration:none;
-  font-weight:600;
 }
